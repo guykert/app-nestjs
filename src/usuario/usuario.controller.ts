@@ -2,10 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe, UseG
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDto, UpdateUsuarioDto } from './dto';
 import { ApiTags } from '@nestjs/swagger';
-import { Auth, UserDecorator } from 'src/config/decorators';
-import { Roles } from 'src/config/decorators/role.decorator';
 import { AuthGuard } from '@nestjs/passport';
+import { Roles } from 'src/config/decorators/role.decorator';
 import { RolGuard } from 'src/rol/guard/rol.guard';
+
 
 @ApiTags('Usuario')
 @Controller('usuario')
@@ -31,12 +31,9 @@ export class UsuarioController {
     
   }
 
-  @Auth()
-  @Get()
-  @SetMetadata('roles', ['administrador'])
   @Roles('administrador')
   @UseGuards(AuthGuard(), RolGuard)
-  
+  @Get()
   async findAll() {
 
     return {

@@ -2,7 +2,6 @@ import { Body, Controller, Param, Get, Post, Req, UseGuards, ValidationPipe, Use
 import { AuthService } from './auth.service';
 import { AuthCambioClaveDto, AuthCredentialsDto, AuthNuevaClaveDto, AuthRecuperarClaveDto } from './dto';
 import { ApiTags } from '@nestjs/swagger';
-import { Auth, UserDecorator } from 'src/config/decorators';
 import { Usuario as UsuarioEntity } from 'src/usuario/entities/usuario.entity';
 import { Usuario } from 'src/usuario/schemas/usuario.schema';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -75,17 +74,17 @@ export class AuthController {
 
   }
 
-  @Auth()
+
   @Post('/cambiarclave')
   async cambiarClave(
 
-      @UserDecorator() user: Usuario,
+      // @GetUser() user: Usuario,
 
       @Body(ValidationPipe) authCambioClaveDto: AuthCambioClaveDto,
 
   ) {
 
-    return await  this.authService.cambiarClave(user['user_mongo'][0],authCambioClaveDto);
+    //return await  this.authService.cambiarClave(user['user_mongo'][0],authCambioClaveDto);
 
   }
 

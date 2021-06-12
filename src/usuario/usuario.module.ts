@@ -18,7 +18,6 @@ import { PassportModule } from '@nestjs/passport';
 
     TypeOrmModule.forFeature([Usuario], 'nueva_estructura'),
     TypeOrmModule.forFeature([UsuarioDesarrollo], 'desarrollo'),
-    PassportModule.register({ defaultStrategy: 'jwt' }),
 
     MongooseModule.forFeature([
       {name: 'Usuario' , schema:UsuarioSchema}
@@ -26,7 +25,8 @@ import { PassportModule } from '@nestjs/passport';
     RolModule,
     RolPermisoModule,
     RolUsuarioModule,
-    
+
+    AuthModule,
 
 
   ],

@@ -16,7 +16,6 @@ import { AuthModule } from './auth/auth.module';
 import { RolHijoModule } from './rol-hijo/rol-hijo.module';
 import { RolPermisoModule } from './rol-permiso/rol-permiso.module';
 import { RolUsuarioModule } from './rol-usuario/rol-usuario.module';
-import { roles } from './app.roles';
 import { AccessControlModule } from 'nest-access-control';
 
 
@@ -50,7 +49,6 @@ const musicEntities = [
       inject: [ConfigService],
     }),
 
-    AccessControlModule.forRoles(roles),
 
     AuthModule,
 

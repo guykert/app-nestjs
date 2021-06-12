@@ -4,7 +4,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Model } from 'mongoose';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import { JwtPayload } from './jwt-payload.interface';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { Usuario as UsuarioEntity } from 'src/usuario/entities/usuario.entity';
@@ -14,6 +13,7 @@ import { Usuario } from 'src/usuario/schemas/usuario.schema';
 import { AuthCambioClaveDto, AuthCredentialsDto, AuthNuevaClaveDto, AuthRecuperarClaveDto } from './dto';
 import { ConfiguracionService } from 'src/configuracion/configuracion.service';
 import { EmailOptions } from 'src/config/mailgun/email-options';
+import { IJwtPaiload } from './jwt-payload.interface';
 
 
 @Injectable()
@@ -64,7 +64,7 @@ export class AuthService {
 
 
 
-      const payload: JwtPayload = { 
+      const payload: IJwtPaiload = { 
 
         id: user.id,
         username:user.rut,
@@ -102,7 +102,7 @@ export class AuthService {
 
       await this.usuarioRepository.save(user);
 
-      const payload: JwtPayload = { 
+      const payload: IJwtPaiload = { 
         
         id: user.id,
         username:user.rut,
@@ -165,7 +165,7 @@ export class AuthService {
 
       const user2 =  await this.usuarioModule.findOneAndUpdate({ _id: user.id}, user);
 
-      const payload: JwtPayload = {
+      const payload: IJwtPaiload = {
         
         id: user.id,
         username:user.rut,
@@ -218,7 +218,7 @@ export class AuthService {
 
         await this.usuarioRepository.save(user);
 
-        const payload: JwtPayload = { 
+        const payload: IJwtPaiload = { 
           
           id: user.id,
           username:user.rut,
@@ -279,7 +279,7 @@ export class AuthService {
 
       const user2 =  await this.usuarioModule.findOneAndUpdate({ _id: user.id}, user);
 
-      const payload: JwtPayload = { 
+      const payload: IJwtPaiload = { 
 
         id: user.id,
         username:user.rut,
@@ -322,7 +322,7 @@ export class AuthService {
 
       await this.usuarioRepository.save(user);
 
-      const payload: JwtPayload = { 
+      const payload: IJwtPaiload = { 
 
         id: user.id,
         username:user.rut,
@@ -515,7 +515,7 @@ export class AuthService {
   async signUser(id : string ,rut : string, email : string ,roles : string[]){
 
 
-    const payload: JwtPayload = { 
+    const payload: IJwtPaiload = { 
 
       id: id,
       username:rut,

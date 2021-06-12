@@ -1,16 +1,15 @@
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { JwtPayload } from './jwt-payload.interface';
-import { ConfigService } from '@nestjs/config';
-import { AuthService } from './auth.service';
+
+import { InjectRepository } from '@nestjs/typeorm';
+import { UnauthorizedException, Injectable } from '@nestjs/common';
+import { IJwtPaiload } from '../jwt-payload.interface';
+import { AuthService } from '../auth.service';
+import { ConfigService } from 'nestjs-config';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
-    // @InjectModel('Usuario') private readonly usuarioModule: Model<Usuario>,
-    // @InjectRepository(UsuarioEntity)
-    // private readonly usuarioRepository: Repository<UsuarioEntity>,
     private readonly authService:AuthService,
     private config: ConfigService,
   ) {
@@ -20,13 +19,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: JwtPayload) {
-
-    // console.log('validate');
-
+  async validate(payload: IJwtPaiload) {
     const { username } = payload;
-
-
 
     const user_mysql = await this.authService.validateUser(username);
 
@@ -39,9 +33,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     }
 
     return {
-      user_mysql: user_mysql,
-      user_mongo: user_mongo
-
+        user_mysql: user_mysql,
+        user_mongo: user_mongo
+  
     };
 
   }

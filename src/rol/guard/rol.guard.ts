@@ -12,23 +12,9 @@ export class RolGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean {
 
-    console.log('context');
-    console.log(context.getHandler());
+
 
     const roles: string[] = this.reflector.get<string[]>('roles', context.getHandler());
-
-    const roles2 = this.reflector.get<string[]>('roles', context.getHandler());
-
-    const roles3 = this.reflector.getAllAndOverride<string[]>('roles', [
-      context.getHandler(),
-      context.getClass(),
-    ]);
-
-    console.log(roles);
-
-    console.log(roles2);
-
-    console.log(roles3);
 
     if(!roles){
 
@@ -40,9 +26,49 @@ export class RolGuard implements CanActivate {
 
     const { user } = request;
 
-    const hasRole = () => user.roles.some((role: string) => roles.includes(role));
+    // console.log(user.user_mysql);
 
-    return user && user.roles && hasRole();
+    // console.log(user.user_mongo);
+
+    // console.log(context.getHandler());
+
+    const roles_usuario = user.user_mysql.roles.map( r => r.nombre);
+
+    // console.log(roles_usuario);
+    // console.log(roles);
+
+
+    // const hasRole = () => roles_usuario.some(
+      
+    //   (role: string) => roles.includes(role.toString())
+      
+    // );
+
+    // const hasRole = () => roles_usuario.some(
+      
+    //   (role: string) => console.log(role)
+      
+    // );
+
+    const hasRole = user.user_mysql.roles.some(rol => roles.includes(rol.nombre));
+
+    // const hasRole = () => roles_usuario.some(
+
+    //   rol => roles.includes(rol.nombre)
+
+    // );
+
+    //console.log(((user.user_mysql && user.user_mysql.roles )));
+
+    //console.log(roles.includes('administrador'));
+
+    // console.log(hasRole);
+
+    
+
+    // return  (user.user_mysql && user.user_mysql.roles ) || (user.user_mongo && user.user_mongo.roles ) && hasRole();
+
+    return  ((user.user_mysql && user.user_mysql.roles ) || (user.user_mongo && user.user_mongo.roles )) && hasRole;
 
   }
 }

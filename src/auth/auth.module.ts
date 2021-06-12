@@ -6,13 +6,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
-import { JwtStrategy } from './jwt.strategy';
 
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsuarioSchema } from 'src/usuario/schemas/usuario.schema';
 import { Usuario } from 'src/usuario/entities/usuario.entity';
 import { ConfiguracionModule } from 'src/configuracion/configuracion.module';
-import { JwtService } from '@nestjs/jwt';
+import { JwtStrategy } from './strategies/jwt.strategy';
+
 
 @Module({
   imports : [
@@ -33,15 +33,17 @@ import { JwtService } from '@nestjs/jwt';
       }),
     }),
 
-    forwardRef(() => UsuarioModule),
 
     ConfiguracionModule,
   ],
   controllers: [AuthController],
   providers: [
     AuthService,
-    JwtStrategy
+    JwtStrategy,
   ],
-  exports : [AuthService]
+  exports : [
+    JwtStrategy,
+    PassportModule,
+  ]
 })
 export class AuthModule {}
