@@ -1,0 +1,313 @@
+//Para instalar nestjs
+
+// npm install -g @nestjs/cli
+
+// para ver la verción 
+
+// nest --version
+
+// para crear un nuevo proyecto : 
+
+// nest new nombre-del-proyecto
+
+// para instalar yarn
+
+// npm install --global yarn
+
+// Para iniciar el server : 
+
+// nest start --debug --watch
+
+// nest g mo post    -->  Esto es para crear un nuevo módulo
+
+// nest g s post --no-spec    -->  Esto es para crear un nuevo service
+
+
+// nest g co post --no-spec  --> Esto es para crear un controlador sin spec. spec es para realizar pruebas unitarias.
+
+
+
+//////////////////////////////  Para el debugger hay que instalar esto /////////////
+
+Esto se tiene que instalar de forma locar en el proyecto y no de formaglobal
+
+npm install -D typescript
+
+npm install -D ts-node
+
+
+
+
+// Aprender
+// validaciones : class-validator
+// de esta forma se instala
+//npm i class-validator class-transformer
+
+//  instalar swagger
+// npm install --save @nestjs/swagger swagger-ui-express
+
+// Esto es para al orm que maneja la comunicación con la base de datos.
+
+//npm install --save @nestjs/typeorm typeorm mysql
+
+// Esto es para al orm que maneja la comunicación con la base de datos.
+
+//npm install --save @nestjs/typeorm typeorm pg
+
+//npm install --save @nestjs/typeorm typeorm mongodb
+
+// Esto es para realizar configuraciones a node al parecer
+// npm install nestjs-config --save
+
+// Esto es para realizar configuraciones de las claves
+// npm install bcryptjs
+
+
+// Esto es para una dependencia de desarrollo
+// npm install @types/bcryptjs
+
+
+// creamos el crud de usuarios
+
+// nest g mo user    -->  Esto es para crear un nuevo módulo
+
+// nest g s user --no-spec    -->  Esto es para crear un nuevo service
+
+// nest g co user --no-spec  --> Esto es para crear un controlador sin spec. spec es para realizar pruebas unitarias.
+
+// genero el dto
+
+// nest g class user/dtos/createUser.dto
+
+// nest g class user/dtos/editUser.dto
+
+// nest g class user/entities/user.entity
+
+
+// Esto es para configurar las variables de entorno
+// npm install nestjs-config --save
+// npm install @nestjs/config 
+
+
+// nest g mo auth    -->  Esto es para crear un nuevo módulo
+
+// nest g s auth    -->  Esto es para crear un nuevo service
+
+// nest g co auth  --> Esto es para crear un controlador sin spec. spec es para realizar pruebas unitarias.
+
+// instalación para manejar el login
+//npm install @nestjs/passport passport passport-local
+
+// npm install --save @types/passport-local
+
+// npm i --save @nestjs/jwt passport-jwt
+
+
+// npm i nest-access-control --save
+
+// Seguridad 
+
+// $ npm i --save helmet
+
+
+//La falsificación de solicitudes entre sitios (también conocida como CSRF o XSRF) es un tipo de explotación maliciosa de un sitio web en el que se 
+
+//transmiten comandos no autorizados de un usuario en el que confía la aplicación web. Para mitigar este tipo de ataque, puede utilizar el paquete csurf .
+
+
+
+// npm i --save csurf
+
+
+// npm i --save express-rate-limit
+
+
+// npm install @hapi/joi 
+
+// Para cambiar de ambiente es de esta forma : 
+
+// $env:NODE_ENV="development"
+
+// $env:NODE_ENV="production"
+
+
+// Esto nos ayuda a leer el archivo dotenv
+
+// npm i -D dotenv @types/dotenv
+
+
+// Docker Esta es la página para descargar Docker
+
+// https://www.docker.com/get-started
+
+// para hacer correr docker : 
+
+// docker run
+
+// -d daemon para que se quede corriendo en segundo plano .
+
+// - p Puerto : 5432 es el puerto de postgress
+
+// --name es para colocarle el nombre de la base de datos al parecer .
+
+// -e para una variable de entorno para la clave 
+
+// despues viene el nopmbre del container que en este caso es postgres
+
+// docker run -d -p 5432 --name my-postgres -e POSTGRES_PASSWORD postgres
+
+
+// Visual Code Extenciones a instalar : 
+
+// Material Icon Theme
+
+// JavaScript (ES6) code snippet
+
+// npm
+
+// docker
+
+// prettier - Code Formatter    -----   una vez instalado ir a settings y buscar Onsave y colocarle un ticket  a Format On Save
+
+// Path intellisense  // para autocompletado en la busqueda de archivos
+
+// bracket Pair Colorizer ---  Es para que la apertura y cierre de caya llave tenga un color para definirlo.
+
+// Para el manejo de las paginaciones
+
+// npm i nestjs-typeorm-paginate
+
+// npm i --save uuid
+
+// Esto es para encriptar passwords
+
+// npm i --save bcrypt
+
+
+// Poblar data
+
+// {
+//     "title": "Post title",
+//     "slug": "Post slug",
+//     "excerpt": "Post excerpt",
+//     "content": "Post content",
+//     "category": "TECNOLOGY",
+//     "tags": [
+//       "Post tags"
+//     ],
+//     "status": true
+// }
+
+// {
+//     "title": "Post 2 title",
+//     "slug": "Post 2 slug",
+//     "excerpt": "Post 2 excerpt",
+//     "content": "Post 2 content",
+//     "category": "TECNOLOGY",
+//     "tags": [
+//       "Post 2 tags"
+//     ],
+//     "status": true
+// }
+
+// {
+//     "title": "Post 3 title",
+//     "slug": "Post 3 slug",
+//     "excerpt": "Post 3 excerpt",
+//     "content": "Post 3 content",
+//     "category": "TECNOLOGY",
+//     "tags": [
+//       "Post 3 tags"
+//     ],
+//     "status": true
+// }
+
+
+
+//  npm i config --save
+
+
+// docker-compose up -d
+
+// docker-compose down
+
+
+//  esto es para la configuración del archivo de la base de datos
+
+npm i --save-dev @types/node
+
+
+
+npm install params
+
+
+
+
+// Error 
+Nest could not find ConfigService element (this provider does not exist in the current context)
+
+
+Para solucionar este error en el archivo app.module.ts
+
+se tiene que agregar esta parte archivo
+
+    ConfigModule.forRoot({
+      
+      isGlobal: true,
+      load: [config],
+      envFilePath: ['.env'],
+    }),
+
+y crear el archivo config.ts
+
+
+
+
+
+
+
+
+Migrar install no funcionó
+
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ./src/config/config.ts",
+    "typeorm:migrate": "npm run typeorm migration:generate -- -n",
+    "typeorm:run": "npm run typeorm migration:run"
+
+    de esta forma se tiene que ejecutar : 
+    npm run typeorm:migrate nombre-migracion
+
+
+Migrar install no funcionó
+
+    "migration:generate": "ts-node node_modules/.bin/typeorm migration:generate",
+    "migration:run": "ts-node node_modules/.bin/typeorm migration:run",
+    "migration:revert": "ts-node node_modules/.bin/typeorm migration:revert"
+
+    de esta forma se tiene que ejecutar : 
+    yarn migration:generate -n CreateDogs
+
+
+
+
+    yarn add tsconfig-paths -D
+
+
+Migrar install no funcionó
+
+    "TypeORM": "ts-node -r tsconfig-paths/register./node_modules/TypeORM/cli.js",
+    "migration:generate":"yarn run TypeORM migration:generate -n"
+
+    de esta forma se tiene que ejecutar : 
+    yarn run "migration:generate" InitialMigration
+
+
+
+Migrar install no funcionó
+
+    ,
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config /src/config/config.ts",
+    "typeorm:migrate": "npm run typeorm migration:generate -- -n",
+    "typeorm:run": "npm run typeorm migration:run"
+
+    de esta forma se tiene que ejecutar : 
+    yarn run "migration:generate" InitialMigration
